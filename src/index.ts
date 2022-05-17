@@ -24,8 +24,8 @@ const start = async () => {
   catch (err){
     console.error(err);
   }
-  app.listen(3000, () => {
-    console.log("Listenin on port 3000");
+  app.listen(8081, () => {
+    console.log("Listenin on port 8081");
   });
 };
 
