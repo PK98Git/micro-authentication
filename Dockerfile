@@ -1,9 +1,12 @@
 FROM node:alpine
 ENV CI=true
- 
-WORKDIR /app
+RUN npm i -g ts-node-dev ts-node 
+WORKDIR /MicroAuth
 COPY package.json .
+
 RUN npm install --only=prod
 COPY . .
  
+EXPOSE 8081
+
 CMD ["npm", "start"]
