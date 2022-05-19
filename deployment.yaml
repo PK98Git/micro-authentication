@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth 
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: pasinduk98/sliit-ctse-2022:v1
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://localhost:27017/ctse'           
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  type: ClusterIP
+  selector:
+    app: auth 
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
